@@ -1,0 +1,30 @@
+{% extends "master/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+
+<div class="container w-50 mx-auto">
+    <h1 class="my-3">{{title}}</h1>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+       
+        {% csrf_token %}
+
+        {{ form | crispy }}
+        
+        <button type="submit" class="btn btn-primary">{{btn}}</button>
+
+        {% if title == "Login Account" %}
+            <p>Don't have an account? <a href="{% url "register_view" %}" class="btn btn-success">Register here.</a></p>
+        
+            {% elif title == "Register Account" %}
+            <p>Already have an account? <a href="{% url "login_view" %}" class="btn btn-success">Login here.</a></p>
+
+        {% endif %}
+
+    </form>
+</div>
+
+{% endblock body %}

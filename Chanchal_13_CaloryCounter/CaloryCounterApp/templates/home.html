@@ -1,0 +1,33 @@
+{% extends "master/base.html" %}
+
+{% block body %}
+
+<div class="w-75 mx-auto mt-5">
+    <div class="text-center p-5">
+    <h1 class="display-5 fw-bold">Daily Calorie Counter</h1>
+    <p class="lead">Calculate your required calories and record what you consume every day.</p>
+</div>
+
+<div class="row g-4 mt-5 text-center">
+    <div class="col-md-4">
+        <div class="card p-5 bg-success text-white">
+            <h4>Calculate BMR</h4>
+            <p>Use age, gender, height and weight to calculate daily calorie needs.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-5 bg-warning text-white">
+            <h4>Track Food</h4>
+            <p>Add food item names and the calories consumed each day.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-5 bg-danger text-white">
+            <h4>View Balance</h4>
+            <p>Compare consumed calories with the required calorie amount.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock body %}

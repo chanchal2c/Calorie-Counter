@@ -1,0 +1,75 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+
+    <div class="w-75 mx-auto">
+        <h1 class="py-3">Calorie Dashboard</h1>
+
+        <h2 class="py-3">Welcome, {{request.user.username}}</h2>
+
+        <a href="{% url "add_calorie" %}" class="btn btn-primary btn">Add Calorie</a>
+
+        <div class="row gap-3 mt-3 ">
+            
+            <div class="col card bg-success text-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Required Calorie</h5>
+                    <p class="card-text fs-1 py-5 text-center">{{required_calorie}} kcal</p>
+                </div>
+            </div>
+
+            <div class="col card bg-warning text-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Consumed Calorie</h5>
+                    <p class="card-text fs-1 py-5 text-center">{{total_consumed}} kcal</p>
+                </div>
+            </div>
+
+            <div class="col card bg-danger text-white mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Remaining Calories</h5>
+                    <p class="card-text fs-1 py-5 text-center">{{less_more}} kcal</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-info text-center mt-3 p-3">
+                <h5 class="card-title">{{suggestion}}</h5>
+        </div>
+        
+    </div>
+
+
+    <div class="w-75 mx-auto">
+        <h2 class="mt-5 ma-5">Today Consumed</h2>
+
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Item Name</th>
+                    <th>Consumed Calorie</th>
+                    <th>Added at</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for data in today_consumed %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{data.item_name}}</td>
+                        <td>{{data.calorie}}</td>
+                        <td>{{data.created_at}}</td>
+                        <td>
+                            <a href="{% url 'edit_calorie' data.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'delete_calorie' data.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock body %}
